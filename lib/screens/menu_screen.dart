@@ -4,6 +4,7 @@ import '../widgets/menu_search_section.dart';
 import '../widgets/menu_category_filters.dart';
 import '../widgets/menu_empty_state.dart';
 import '../utils/menu_data_service.dart';
+import 'restaurant_detail_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -67,8 +68,13 @@ class _MenuScreenState extends State<MenuScreen> {
 
   void _handleAddToOrder(int index) {
     final item = filteredMenuItems[index];
-    // Handle add to order functionality
-    print('Added to order: ${item['name']}');
+    // Navigate to restaurant detail screen for ordering with selected item
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RestaurantDetailScreen(menuItem: item),
+      ),
+    );
   }
 
   @override

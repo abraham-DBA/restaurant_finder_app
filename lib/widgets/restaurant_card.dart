@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../models/restaurant.dart';
 import '../utils/image_utils.dart';
+import '../screens/restaurant_home_screen.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
+  final VoidCallback? onViewMenu;
 
-  const RestaurantCard({super.key, required this.restaurant});
+  const RestaurantCard({super.key, required this.restaurant, this.onViewMenu});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class RestaurantCard extends StatelessWidget {
           // Image with overlay
           _buildImageSection(),
           // Restaurant Info
-          _buildInfoSection(),
+          _buildInfoSection(context),
         ],
       ),
     );
@@ -136,7 +138,7 @@ class RestaurantCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoSection() {
+  Widget _buildInfoSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -181,7 +183,18 @@ class RestaurantCard extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),
-              onPressed: () {},
+              onPressed:
+                  onViewMenu ??
+                  () {
+                    // Navigate to restaurant home screen with restaurant data
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            RestaurantHomeScreen(restaurant: restaurant),
+                      ),
+                    );
+                  },
               child: const Text(
                 'View Menu',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
