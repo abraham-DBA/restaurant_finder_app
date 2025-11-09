@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+
+class OrderHeaderSection extends StatelessWidget {
+  final VoidCallback onBackPressed;
+
+  const OrderHeaderSection({super.key, required this.onBackPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          // Back Button
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: IconButton(
+              onPressed: onBackPressed,
+              icon: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                size: 18,
+                color: Colors.grey[700],
+              ),
+              padding: EdgeInsets.zero,
+            ),
+          ),
+          const SizedBox(width: 16),
+          // Title
+          Text(
+            "My Orders",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.grey[800],
+            ),
+          ),
+          const Spacer(),
+          // Help/Support Icon
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: IconButton(
+              onPressed: () {
+                // Handle help/support action
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Order support feature coming soon!"),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.help_outline_rounded,
+                size: 20,
+                color: Colors.grey[600],
+              ),
+              padding: EdgeInsets.zero,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

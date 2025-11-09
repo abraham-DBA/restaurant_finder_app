@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/sections/profile_menu_section.dart';
+import 'my_bookings_screen.dart';
+import 'my_orders_screen.dart';
+import 'edit_profile_screen.dart';
+import 'payment_methods_screen.dart';
+import 'addresses_screen.dart';
+import 'help_support_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -38,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
 
               // 🔹 Modern Menu Options
               ProfileMenuSection(
-                menuItems: _getMenuItems(),
+                menuItems: _getMenuItems(context),
                 onLogoutPressed: () {
                   // Handle logout logic
                 },
@@ -51,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  List<ProfileMenuData> _getMenuItems() {
+  List<ProfileMenuData> _getMenuItems(BuildContext context) {
     return [
       ProfileMenuData(
         icon: Icons.person_outline_rounded,
@@ -59,7 +65,10 @@ class ProfileScreen extends StatelessWidget {
         subtitle: "Update your personal information",
         color: const Color(0xFF6366F1),
         onTap: () {
-          // Handle edit profile navigation
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const EditProfileScreen()),
+          );
         },
       ),
       ProfileMenuData(
@@ -68,7 +77,12 @@ class ProfileScreen extends StatelessWidget {
         subtitle: "Manage your payment options",
         color: const Color(0xFF4ECDC4),
         onTap: () {
-          // Handle payment methods navigation
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const PaymentMethodsScreen(),
+            ),
+          );
         },
       ),
       ProfileMenuData(
@@ -78,7 +92,10 @@ class ProfileScreen extends StatelessWidget {
         color: const Color(0xFFFF6B6B),
         badge: "12",
         onTap: () {
-          // Handle order history navigation
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyOrdersScreen()),
+          );
         },
       ),
       ProfileMenuData(
@@ -87,7 +104,10 @@ class ProfileScreen extends StatelessWidget {
         subtitle: "Your table reservations",
         color: const Color(0xFF45B7D1),
         onTap: () {
-          // Handle bookings navigation
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyBookingsScreen()),
+          );
         },
       ),
       ProfileMenuData(
@@ -96,16 +116,10 @@ class ProfileScreen extends StatelessWidget {
         subtitle: "Manage delivery locations",
         color: const Color(0xFF96CEB4),
         onTap: () {
-          // Handle addresses navigation
-        },
-      ),
-      ProfileMenuData(
-        icon: Icons.notifications_rounded,
-        title: "Notifications",
-        subtitle: "Manage your alerts",
-        color: const Color(0xFFFFA726),
-        onTap: () {
-          // Handle notifications navigation
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddressesScreen()),
+          );
         },
       ),
       ProfileMenuData(
@@ -114,7 +128,10 @@ class ProfileScreen extends StatelessWidget {
         subtitle: "Get help with your account",
         color: const Color(0xFF7E57C2),
         onTap: () {
-          // Handle help navigation
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HelpSupportScreen()),
+          );
         },
       ),
       const ProfileMenuData(

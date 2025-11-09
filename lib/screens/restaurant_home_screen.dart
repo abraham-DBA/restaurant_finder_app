@@ -71,9 +71,6 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
           ),
         ),
       ),
-
-      // Bottom Navigation Bar
-      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -446,38 +443,36 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          ...items
-              .map(
-                (item) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 4,
-                        height: 4,
-                        margin: const EdgeInsets.only(top: 8, right: 12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF6366F1),
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                            color: Colors.grey[700],
-                            fontSize: 15,
-                            height: 1.4,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
+          ...items.map(
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 4,
+                    height: 4,
+                    margin: const EdgeInsets.only(top: 8, right: 12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF6366F1),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
-                ),
-              )
-              ,
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 15,
+                        height: 1.4,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -608,56 +603,6 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
     );
     // In a real app, you would use url_launcher package here:
     // launchUrl(Uri.parse(appleMapsUrl));
-  }
-
-  Widget _buildBottomNavigationBar() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 20,
-            offset: const Offset(0, -5),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          selectedItemColor: const Color(0xFF6366F1),
-          unselectedItemColor: Colors.grey[600],
-          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
-          currentIndex: 0,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.restaurant_menu_rounded),
-              label: 'Menu',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_long_rounded),
-              label: 'Orders',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded),
-              label: 'Profile',
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 
